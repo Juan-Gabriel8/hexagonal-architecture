@@ -21,7 +21,10 @@ public class CustomerUsecase implements CustomerImputPort {
         var address = addressOutput.findAddressByZipCode(zipCode);
         customer.setAddress(address);
         customerOutput.insertCustomer(customer);
+    }
 
-
+    @Override
+    public Customer findCustomerById(String id) {
+        return customerOutput.findCustomerById(id).orElseThrow(() -> new RuntimeException("Customer not found"));
     }
 }
