@@ -8,5 +8,7 @@ public interface CustomerOutputPort {
 
     void insertCustomer(Customer customer);
 
-    public Optional<Customer> findCustomerById(String id);
+    Optional<Customer> findCustomerById(String id);
+
+    void updateCustomer(Customer customer);
 }

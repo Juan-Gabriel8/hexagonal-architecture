@@ -29,4 +29,10 @@ public class CustomerOutputAdapter implements CustomerOutputPort {
         var customerEntity = customerRepository.findById(id);
         return customerEntity.map(entity -> customerEntityMapper.toCustomer(entity));
     }
+
+    @Override
+    public void updateCustomer(Customer customer) {
+        var customerEntity = customerEntityMapper.toCustomerEntity(customer);
+        customerRepository.save(customerEntity);
+    }
 }
