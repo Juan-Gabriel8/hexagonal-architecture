@@ -6,7 +6,6 @@ import com.jgroup.hexagonal_architecture.adapters.in.controller.response.Custome
 import com.jgroup.hexagonal_architecture.app.core.domain.Customer;
 import com.jgroup.hexagonal_architecture.app.ports.in.CustomerImputPort;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,11 +13,14 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/customers")
 public class CustomerController {
 
-    @Autowired
-    private CustomerMapper customerMapper;
+    private final CustomerMapper customerMapper;
 
-    @Autowired
-    private CustomerImputPort customerImputPort;
+    private final CustomerImputPort customerImputPort;
+
+    public CustomerController(CustomerMapper customerMapper, CustomerImputPort customerImputPort) {
+        this.customerMapper = customerMapper;
+        this.customerImputPort = customerImputPort;
+    }
 
     @PostMapping
     public ResponseEntity<Void> insertCustomer(@Valid @RequestBody CustomerRequest customerRequest) {
