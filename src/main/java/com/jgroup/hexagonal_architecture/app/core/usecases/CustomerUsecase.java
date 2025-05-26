@@ -35,4 +35,12 @@ public class CustomerUsecase implements CustomerImputPort {
         customer.setAddress(address);
         customerOutput.updateCustomer(customer);
     }
+
+    @Override
+    public void deleteCustomer(String id) {
+        findCustomerById(id);
+        customerOutput.deleteCustomer(id);
+
+    }
+
 }

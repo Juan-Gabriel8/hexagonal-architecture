@@ -35,4 +35,10 @@ public class CustomerOutputAdapter implements CustomerOutputPort {
         var customerEntity = customerEntityMapper.toCustomerEntity(customer);
         customerRepository.save(customerEntity);
     }
+
+    @Override
+    public void deleteCustomer(String id) {
+        customerRepository.deleteById(id);
+    }
+
 }

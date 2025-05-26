@@ -11,4 +11,6 @@ public interface CustomerOutputPort {
     Optional<Customer> findCustomerById(String id);
 
     void updateCustomer(Customer customer);
+
+    void deleteCustomer(String id);
 }

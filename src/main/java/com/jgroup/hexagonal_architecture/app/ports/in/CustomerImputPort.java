@@ -9,4 +9,6 @@ public interface CustomerImputPort {
     Customer findCustomerById(String id);
 
     void updateCustomer(Customer customer, String zipCode);
+
+    void deleteCustomer(String id);
 }
