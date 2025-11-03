@@ -4,6 +4,7 @@ import com.jgroup.hexagonal_architecture.app.core.domain.Customer;
 import com.jgroup.hexagonal_architecture.app.ports.in.CustomerImputPort;
 import com.jgroup.hexagonal_architecture.app.ports.out.AddressOutputPort;
 import com.jgroup.hexagonal_architecture.app.ports.out.CustomerOutputPort;
+import com.jgroup.hexagonal_architecture.app.ports.out.SendCpfForValidationOutputPort;
 
 public class CustomerUsecase implements CustomerImputPort {
 
@@ -11,9 +12,12 @@ public class CustomerUsecase implements CustomerImputPort {
 
     private final CustomerOutputPort customerOutput;
 
-    public CustomerUsecase(AddressOutputPort addressOutput, CustomerOutputPort customerOutput) {
+    private final SendCpfForValidationOutputPort sendCpfForValidationOutputPort;
+
+    public CustomerUsecase(AddressOutputPort addressOutput, CustomerOutputPort customerOutput, SendCpfForValidationOutputPort sendCpfForValidationOutputPort) {
         this.addressOutput = addressOutput;
         this.customerOutput = customerOutput;
+        this.sendCpfForValidationOutputPort = sendCpfForValidationOutputPort;
     }
 
     @Override
@@ -21,6 +25,7 @@ public class CustomerUsecase implements CustomerImputPort {
         var address = addressOutput.findAddressByZipCode(zipCode);
         customer.setAddress(address);
         customerOutput.insertCustomer(customer);
+        sendCpfForValidationOutputPort.send(customer.getCpf());
     }
 
     @Override
