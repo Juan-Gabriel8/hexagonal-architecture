@@ -1,9 +1,9 @@
-external-api:
-  client:
-    address:
-      url: http://localhost:8082/addresses
-
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/hexagonal
+      uri: mongodb://localhost:27817/hexagonal
+
+juan:
+  client:
+    address:
+      url: http://localhost:8082/addresses
